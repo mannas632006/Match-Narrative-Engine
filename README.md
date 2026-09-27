@@ -359,7 +359,3 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 - [MoviePy](https://zulko.github.io/moviepy/) — Video editing in Python
 
 ---
-
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/bhatticoder">bhatticoder</a>
-</p>
