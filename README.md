@@ -94,10 +94,7 @@ The system is built as a **modular, multi-stage pipeline** where each component 
 
 ### 1. Clone the Repository
 
-```bash
-git clone https://github.com/bhatticoder/Automated-Fifa-Commentary.git
-cd Automated-Fifa-Commentary
-```
+
 
 ### 2. Create a Virtual Environment
 
