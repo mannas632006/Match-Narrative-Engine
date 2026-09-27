@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI FIFA Commentary Engine — Automated Match Commentary</title>
+    <meta name="description" content="AI-powered real-time football match commentary generation using Computer Vision, NLP, and Text-to-Speech. Transform raw match footage into professional broadcasts.">
+    <meta name="keywords" content="FIFA, AI Commentary, YOLOv8, GPT-4, Football, Computer Vision, TTS">
+    <meta name="author" content="bhatticoder">
+    <meta property="og:title" content="AI FIFA Commentary Engine">
+    <meta property="og:description" content="Transform raw football footage into professional AI-powered commentary broadcasts.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">FIFA<span class="logo-accent">AI</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pipeline" class="nav-link">Pipeline</a>
+                <a href="#tech" class="nav-link">Tech Stack</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#setup" class="nav-link">Setup</a>
+            </div>
+            <a href="https://github.com/bhatticoder/Automated-Fifa-Commentary" target="_blank" class="nav-cta">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI-Powered • Real-Time • Automated
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Transform Match</span>
+                <span class="title-line title-gradient">Footage Into</span>
+                <span class="title-line">Live Commentary</span>
+            </h1>
+            <p class="hero-description">
+                An end-to-end AI pipeline that analyzes football match videos, detects game events, 
+                generates professional play-by-play commentary, and produces broadcast-ready video with synchronized audio.
+            </p>
+            <div class="hero-actions">
+                <a href="#setup" class="btn btn-primary">
+                    <span>Get Started</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://github.com/bhatticoder/Automated-Fifa-Commentary" target="_blank" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>View Source</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="13">0</span>
+                    <span class="stat-label">Event Types</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-label">Pipeline Stages</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-target="6">0</span>
+                    <span class="stat-label">AI Models</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="terminal-title">run_standalone.py</span>
+                </div>
+                <div class="terminal-body" id="terminal">
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command typing" id="typing-cmd"></span>
+                        <span class="cursor">▌</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="section demo" id="demo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Showcase</span>
+                <h2 class="section-title">See It In Action</h2>
+                <p class="section-desc">Watch how the AI commentary engine transforms raw match footage</p>
+            </div>
+            <div class="demo-videos">
+                <div class="video-card">
+                    <h3>Example: MP4 Output</h3>
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="With _with_commentary.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <h3>Example: MOV Output</h3>
+                    <div class="video-wrapper">
+                        <video controls preload="metadata">
+                            <source src="With_Commentary_Output.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Powerful AI Features</h2>
+                <p class="section-desc">Every component is designed for maximum accuracy and broadcast-quality output</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-delay="0">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                    <h3>Video Analysis</h3>
+                    <p>Frame-by-frame analysis using YOLOv8 for precise player and ball detection at every moment of the match.</p>
+                </div>
+                <div class="feature-card" data-delay="100">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Multi-Object Tracking</h3>
+                    <p>ByteTrack-based IOU matching assigns persistent IDs to every player and the ball across frames.</p>
+                </div>
+                <div class="feature-card" data-delay="200">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
+                    </div>
+                    <h3>AI Event Classification</h3>
+                    <p>GPT-4o Vision identifies 13 distinct match events — goals, passes, tackles, fouls, and more.</p>
+                </div>
+                <div class="feature-card" data-delay="300">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Natural Commentary</h3>
+                    <p>GPT generates broadcast-quality play-by-play narration with dynamic pacing matched to video timing.</p>
+                </div>
+                <div class="feature-card" data-delay="400">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h3>Text-to-Speech</h3>
+                    <p>OpenAI TTS converts commentary into lifelike speech with configurable voice and speed settings.</p>
+                </div>
+                <div class="feature-card" data-delay="500">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    </div>
+                    <h3>Video Export</h3>
+                    <p>MoviePy composites the original video with AI commentary audio for broadcast-ready output.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pipeline Section -->
+    <section class="section pipeline" id="pipeline">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Architecture</span>
+                <h2 class="section-title">The AI Pipeline</h2>
+                <p class="section-desc">A modular, multi-stage architecture where each component can be independently configured</p>
+            </div>
+            <div class="pipeline-flow">
+                <div class="pipeline-step" data-step="1">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">🎥</div>
+                    <h3>Video Input</h3>
+                    <p>OpenCV reads frames from MP4/AVI footage. Every 90th frame is analyzed for efficiency.</p>
+                    <div class="step-tech">OpenCV</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="2">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>Detection</h3>
+                    <p>YOLOv8 identifies players and the ball with bounding boxes and confidence scores.</p>
+                    <div class="step-tech">YOLOv8</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="3">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">🏃</div>
+                    <h3>Tracking</h3>
+                    <p>ByteTrack assigns persistent IDs across frames using IOU-based matching.</p>
+                    <div class="step-tech">ByteTrack</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="4">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">🧠</div>
+                    <h3>Classification</h3>
+                    <p>GPT-4o Vision analyzes each frame and classifies the match event with confidence.</p>
+                    <div class="step-tech">GPT-4o Vision</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="5">
+                    <div class="step-number">05</div>
+                    <div class="step-icon">📊</div>
+                    <h3>Aggregation</h3>
+                    <p>Events are batched and filtered with cooldown windows to prevent duplicates.</p>
+                    <div class="step-tech">Custom Engine</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="6">
+                    <div class="step-number">06</div>
+                    <div class="step-icon">📝</div>
+                    <h3>Commentary</h3>
+                    <p>GPT generates paced, broadcast-style narration matching the video's timeline.</p>
+                    <div class="step-tech">GPT-4o</div>
+                </div>
+                <div class="pipeline-connector">
+                    <svg viewBox="0 0 40 20"><path d="M0 10 L30 10 M25 5 L30 10 L25 15" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                <div class="pipeline-step" data-step="7">
+                    <div class="step-number">07</div>
+                    <div class="step-icon">🔊</div>
+                    <h3>TTS + Export</h3>
+                    <p>OpenAI TTS synthesizes speech, MoviePy overlays audio onto the original video.</p>
+                    <div class="step-tech">OpenAI TTS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section events" id="events">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">13 Event Types</h2>
+                <p class="section-desc">The classifier recognizes every key moment in a football match</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card"><span class="event-emoji">⚽</span><span class="event-name">Possession</span></div>
+                <div class="event-card"><span class="event-emoji">🎯</span><span class="event-name">Pass</span></div>
+                <div class="event-card"><span class="event-emoji">💥</span><span class="event-name">Shot on Goal</span></div>
+                <div class="event-card highlight"><span class="event-emoji">🥅</span><span class="event-name">Goal</span></div>
+                <div class="event-card"><span class="event-emoji">🦵</span><span class="event-name">Tackle</span></div>
+                <div class="event-card"><span class="event-emoji">🚩</span><span class="event-name">Corner Kick</span></div>
+                <div class="event-card"><span class="event-emoji">🎪</span><span class="event-name">Free Kick</span></div>
+                <div class="event-card"><span class="event-emoji">🟨</span><span class="event-name">Foul</span></div>
+                <div class="event-card"><span class="event-emoji">🤾</span><span class="event-name">Throw In</span></div>
+                <div class="event-card"><span class="event-emoji">🧤</span><span class="event-name">GK Grab</span></div>
+                <div class="event-card"><span class="event-emoji">👊</span><span class="event-name">GK Punch</span></div>
+                <div class="event-card"><span class="event-emoji">🦶</span><span class="event-name">Goal Kick</span></div>
+                <div class="event-card"><span class="event-emoji">🎉</span><span class="event-name">Celebration</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section tech" id="tech">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Technology</span>
+                <h2 class="section-title">Built With</h2>
+                <p class="section-desc">Powered by cutting-edge AI and computer vision technologies</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-logo">🐍</div>
+                    <h4>Python 3.9+</h4>
+                    <p>Core Language</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">🔥</div>
+                    <h4>PyTorch</h4>
+                    <p>Deep Learning</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">👁️</div>
+                    <h4>YOLOv8</h4>
+                    <p>Object Detection</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">📷</div>
+                    <h4>OpenCV</h4>
+                    <p>Video Processing</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">🤖</div>
+                    <h4>GPT-4o</h4>
+                    <p>Vision & NLP</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">🔊</div>
+                    <h4>OpenAI TTS</h4>
+                    <p>Speech Synthesis</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">🎬</div>
+                    <h4>MoviePy</h4>
+                    <p>Video Editing</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-logo">🎮</div>
+                    <h4>PyGame</h4>
+                    <p>Audio Playback</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Section -->
+    <section class="section setup" id="setup">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Installation</span>
+                <h2 class="section-title">Quick Setup</h2>
+                <p class="section-desc">Get up and running in under 5 minutes</p>
+            </div>
+            <div class="setup-steps">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <h3>Clone & Install</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Terminal</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>git clone https://github.com/bhatticoder/Automated-Fifa-Commentary.git
+cd Automated-Fifa-Commentary
+python -m venv .venv && .venv\Scripts\activate
+pip install -r requirements.txt</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <h3>Configure API Key</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>.env</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>cp .env.example .env
+# Edit .env and add your OpenAI API key
+OPENAI_API_KEY=your_openai_api_key_here</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <h3>Run Commentary</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Terminal</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>python run_standalone.py "path/to/match_video.mp4"</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⚽</span>
+                    <span class="logo-text">FIFA<span class="logo-accent">AI</span></span>
+                    <p class="footer-desc">AI-powered football commentary engine</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/bhatticoder/Automated-Fifa-Commentary" target="_blank">GitHub</a>
+                    <a href="#features">Features</a>
+                    <a href="#pipeline">Architecture</a>
+                    <a href="#setup">Setup</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with ❤️ by <a href="https://github.com/bhatticoder" target="_blank">bhatticoder</a></p>
+                <p>© 2026 AI FIFA Commentary Engine. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

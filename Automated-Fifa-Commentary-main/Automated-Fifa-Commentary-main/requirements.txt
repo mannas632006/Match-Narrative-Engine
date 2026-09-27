@@ -1,0 +1,11 @@
+# Core requirements for the FIFA Commentary Pipeline
+torch
+torchvision
+ultralytics
+opencv-python
+numpy
+pyyaml
+python-dotenv
+openai
+moviepy
+pygame

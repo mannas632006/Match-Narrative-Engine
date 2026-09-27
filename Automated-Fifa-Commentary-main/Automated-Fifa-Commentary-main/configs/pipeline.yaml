@@ -1,0 +1,48 @@
+pipeline:
+  detection:
+    model: yolov8n
+    confidence_threshold: 0.5
+    classes:
+      - person
+      - sports_ball
+  
+  tracking:
+    tracker: bytetrack
+    track_thresh: 0.5
+    track_buffer: 30
+    match_thresh: 0.8
+  
+  classification:
+    model: gpt-4o-mini
+    window_size: 16
+    stride: 8
+    events:
+      - possession
+      - pass
+      - shot_on_goal
+      - goal
+      - tackle
+      - corner_kick
+      - free_kick
+      - foul
+      - throw_in
+      - gk_grab
+      - gk_punch
+      - goal_kick
+      - celebration
+  
+  aggregation:
+    cooldown_period: 2.0
+    goal_cooldown: 7.0
+    min_confidence: 0.4
+    batch_window: 999.0
+  
+  commentary:
+    model: gpt-4o-mini
+    max_tokens: 400
+    temperature: 0.7
+  
+  tts:
+    model: tts-1
+    voice: alloy
+    speed: 1.0
